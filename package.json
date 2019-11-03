@@ -2,14 +2,16 @@
   "name": "rmg",
   "version": "1.0.0",
   "description": "first build",
-  "main": "1test.js",
+  "main": "rmg_main.js",
   "scripts": {
-    "test": "node 1test.js"
+    "test": "node rmg_main.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "mysql": "^2.17.1"
-  }
+    "mysql": "^2.17.1",
+    "properties-reader": "^0.3.1"
+  },
+  "devDependencies": {}
 }
