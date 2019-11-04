@@ -9,28 +9,35 @@ npm install body-parser
 mysqldump -u root -p rmg_1 > rmg_1-$(date +%F).sql
 
 
-import to pre-existing db
+import to db
 mysql -u root -p rmg_1 < full-backup.sql
 
-#import to non-existing db
-#mysql -u [username] -p db1 < db1-backup.sql
+
 
 
 import a single table
 mysql -u dbadmin -p db1 < db1-table1.sql
 
-curl -X POST --data '{"user":"varun"}' -H "Content-Type: application/json"  http://localhost:8081/add_user
 
 
-curl -X POST --data '{"user":"varun","age":"90","state":"Andhra Pradesh"}' -H "Content-Type: application/json"  http://localhost:8081/add_user
+data list and entry: {local testing}
+curl -X POST --data '{"user_id":"varun ravula","phone":"8080808080","state":"Andhra Pradesh","email_id":"varun@gmail.com","f_name":"varun","l_name":"ravula"}' -H "Content-Type: application/json"  http://localhost:80/add_user
 
-curl -X POST --data '{"user_id":"varun ravula","phone":"8080808080","state":"Andhra Pradesh","email_id":"varun@gmail.com","f_name":"varun","l_name":"ravula"}' -H "Content-Type: application/json"  http://localhost:8081/add_user
+curl -X GET http://localhost:80/list_user
 
-curl -X GET http://localhost:8081/list_user
+
+
+{remote testing}
+curl -X POST --data '{"user_id":"varun ravula","phone":"8080808080","state":"Andhra Pradesh","email_id":"varun@gmail.com","f_name":"varun","l_name":"ravula"}' -H "Content-Type: application/json"  http://54.169.191.238/add_user
+
+curl -X GET http://54.169.191.238/list_user
+
+
 
 
 
 linux instance
+public ip: 54.169.191.238
 chmod 400 rmg-key-pair.pem
 ec2-user@ec2-54-169-191-238.ap-southeast-1.compute.amazonaws.com
 ssh -i "rmg-key-pair.pem" ec2-user@ec2-54-169-191-238.ap-southeast-1.compute.amazonaws.com
@@ -57,4 +64,10 @@ link local repo to remote:
 git remote add origin <remote_repo_url>
 git push --all origin
 
+
+
+
+whereis node
+node: /home/<my_user>/.nvm/versions/node/v8.9.4/bin/node
+sudo ln -s /home/<my_user>/.nvm/versions/node/v8.9.4/bin/node /usr/bin/node
 
