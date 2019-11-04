@@ -155,10 +155,10 @@ CREATE TABLE `user_profiles` (
   `f_name` varchar(20) DEFAULT NULL,
   `l_name` varchar(20) DEFAULT NULL,
   `state` varchar(20) DEFAULT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id` int(10) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,7 +167,7 @@ CREATE TABLE `user_profiles` (
 
 LOCK TABLES `user_profiles` WRITE;
 /*!40000 ALTER TABLE `user_profiles` DISABLE KEYS */;
-INSERT INTO `user_profiles` VALUES ('varun ravula','8080808080','varun@gmail.com','varun','ravula','Andhra Pradesh','2019-10-29 23:08:22',6),('varun ravula','8080808080','varun@gmail.com','varun','ravula','Andhra Pradesh','2019-10-29 23:20:21',7),('varun ravula','8080808080','varun@gmail.com','varun','ravula','Andhra Pradesh','2019-10-29 23:39:53',8),('varun ravula','8080808080','varun@gmail.com','varun','ravula','Andhra Pradesh','2019-10-29 23:59:57',9),('varun ravula','8080808080','varun@gmail.com','varun','ravula','Andhra Pradesh','2019-10-30 11:18:33',10),('varun ravula','8080808080','varun@gmail.com','varun','ravula','Andhra Pradesh','2019-10-30 11:18:46',11),('varun ravula','8080808080','varun@gmail.com','varun','ravula','Andhra Pradesh','2019-10-30 11:18:47',12),('varun ravula','8080808080','varun@gmail.com','varun','ravula','Andhra Pradesh','2019-10-30 11:18:55',13),('varun ravula','8080808080','varun@gmail.com','varun','ravula','Andhra Pradesh','2019-10-30 11:19:12',14),('varun ravula','8080808080','varun@gmail.com','varun','ravula','Andhra Pradesh','2019-10-30 11:19:20',15),('varun ravula','8080808080','varun@gmail.com','varun','ravula','Andhra Pradesh','2019-10-30 11:20:30',16),('varun ravula','8080808080','varun@gmail.com','varun','ravula','Andhra Pradesh','2019-10-30 11:20:32',17);
+INSERT INTO `user_profiles` VALUES ('varun ravula','8080808080','varun@gmail.com','varun','ravula','Andhra Pradesh','2019-11-03 13:06:42',47);
 /*!40000 ALTER TABLE `user_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,4 +205,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-30 11:52:36
+-- Dump completed on 2019-11-04 11:45:05

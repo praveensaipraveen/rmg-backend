@@ -17,15 +17,37 @@ mysql -u [username] -p db1 < db1-backup.sql
 
 
 import a single table
-ysql -u dbadmin -p db1 < db1-table1.sql
+mysql -u dbadmin -p db1 < db1-table1.sql
 
- curl -X POST --data '{"user":"varun"}' -H "Content-Type: application/json"  http://localhost:8081/add_user
+curl -X POST --data '{"user":"varun"}' -H "Content-Type: application/json"  http://localhost:8081/add_user
 
 
 curl -X POST --data '{"user":"varun","age":"90","state":"Andhra Pradesh"}' -H "Content-Type: application/json"  http://localhost:8081/add_user
 
-curl -X POST --data '{"user_id":"varun ravula","phone":"8080808080","state":"Andhra Pradesh","email_id":"varun@grun","l_name":"ravula"}' -H "Content-Type: application/json"  http://localhost:8081/add_user
+curl -X POST --data '{"user_id":"varun ravula","phone":"8080808080","state":"Andhra Pradesh","email_id":"varun@gmail.com","f_name":"varun","l_name":"ravula"}' -H "Content-Type: application/json"  http://localhost:8081/add_user
 
+
+linux instance
+chmod 400 rmg-key-pair.pem
+ec2-user@ec2-54-169-191-238.ap-southeast-1.compute.amazonaws.com
+ssh -i "rmg-key-pair.pem" ec2-user@ec2-54-169-191-238.ap-southeast-1.compute.amazonaws.com
+
+
+install node js:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+. ~/.nvm/nvm.sh
+nvm install node
+node -e "console.log('Running Node.js ' + process.version)"
+
+sudo yum install mysql-server
+
+
+
+scp -i myAmazonKey.pem phpMyAdmin-3.4.5-all-languages.tar.gz ec2-user@mec2-50-17-16-67.compute-1.amazonaws.com:~/.
+
+
+mysql
+ssh -i "rmg-key-pair.pem" ec2-user@ec2-13-229-79-210.ap-southeast-1.compute.amazonaws.com
 
 
 

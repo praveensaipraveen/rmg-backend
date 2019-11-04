@@ -126,24 +126,24 @@ add_user: function(req,res){
         }
 ///////////////////////////////////////////////////////////////////
         sql_conn.doesExist("user_profiles","user_id",user_id).then((cnt) =>{
-            console.log("inside:"+cnt);
+            
         if( cnt > 0 ){
             console.log("user_id not available for new user");
             res.send('{"User_ID":"Not Available"}');
         }else{
-            console.log("user_id doesnot exist in db. user_id available for new user");
+            console.log("user_id available for new user");
             var connection = sql_conn.get_con();
             connection.connect(function(err) {
             if (err){
-                console.log("error1:"+err)    
+                console.log("error:"+err)    
                 throw err;
             } 
             
                     var insertionQuery="insert into user_profiles(user_id,phone,email_id,f_name,l_name,state)  values('"+user_id+"','"+phone+"','"+email_id+"','"+f_name+"','"+l_name+"','"+state+"')";
-                    console.log(insertionQuery);
+                    //console.log(insertionQuery);
                     connection.query(insertionQuery, function (err, rows, fields) {
                         if (err){ 
-                            console.log("error2:"+err)
+                            console.log("error:"+err)
                             throw err
                         }
                         
@@ -152,10 +152,9 @@ add_user: function(req,res){
                         connection.end();
                     });
             });
-            //res.send('{"User_ID":"NA"}');
         }
     }).catch(err=>{
-        console.log("error3:"+err)
+        console.log("error:"+err)
     })
 
 //////////////////////////////////////////////////////////
