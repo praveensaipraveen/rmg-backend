@@ -51,6 +51,46 @@ ssh -i "rmg-key-pair.pem" ec2-user@ec2-13-229-79-210.ap-southeast-1.compute.amaz
 
 
 
+-------------------------------------
+        game_id="";
+        tournament_name = "";
+        occupied_slots = 0;
+        available_slots = 0;
+        start_time = "";
+        end_time = "";
+        entry_fee = 0;
+        prize1 = 0;
+        prize1_quota_pc = 0;
+        prize2 = 0;
+        prize2_quota_pc = 0;
+        prize3 = 0;
+	prize3_quota_pc = 0;
+
+http://localhost:8081/add_tournament
+{
+	"game_id":"2",
+	"tournament_name":"t21",
+	"occupied_slots":0,
+	"available_slots":10,
+	"start_time":"2019-11-27T01:00:00",
+	"end_time":"2019-11-27T23:00:00",
+	"entry_fee":4,
+	"prize1":5,
+	"prize1_quota_pc":10,
+	"prize2":4,
+	"prize2_quota_pc":10,
+	"prize3":3,
+	"prize3_quota_pc":10
+} 
+
+------------------------------------
 
 
+
+rank of user with phone number and tournament_id
+select FIND_IN_SET((select max(score) from tournament_data where phone='1010101010' and tournament_id=9),GROUP_CONCAT( distinct t.score  order by  t.score desc)) as rank from (select max(score) as score,phone from  tournament_data group by  phone, tournament_id desc)  t;
+
+
+top 10 rank list 
+select phone,score,FIND_IN_SET(score,(select GROUP_CONCAT( distinct score  order by  score desc) from tournament_data)) as rank,tournament_id from (select max(score) as score,phone,tournament_id from  tournament_data group by phone, tournament_id ) as t where tournament_id=8 order by rank asc limit 10;
 

@@ -4,7 +4,7 @@ var sql_conn = require('./sql_connection');
 module.exports = {
 
 list_user: function(req,res){
-    var json1 = null;
+   var json1 = null;
    var connection = sql_conn.get_con();
    connection.connect(async function(err) {
       if (err) throw err;
@@ -27,7 +27,7 @@ list_user: function(req,res){
 },
 
 check: function(){
-    var user_id="varun_ravua";
+    var user_id="varun_ravula";
     return new Promise((resolve, reject)=>{
         if(user_id === "varun_ravula"){
             console.log("resolved");
@@ -157,11 +157,82 @@ add_user: function(req,res){
         console.log("error:"+err)
     })
 
-//////////////////////////////////////////////////////////
-            
-//////////////////////////////////////////////////////////////            
-    //     }
-    // })
+//////////////////////////////////////
         
-    } //add user ends
+    }, //add user ends
+
+
+
+    update_user: function(req,res){
+        console.log(req.body);
+        var user_id="";
+        var phone = "";
+        var email_id = "";
+        var f_name = "";
+        var l_name = "";
+        var state = "";
+
+        
+        for(var i in req.body){
+            switch(i){
+                    case "user_id":
+                        user_id=req.body[i];
+                        break;
+                    case "phone":
+                        phone=req.body[i];
+                        break;
+                    case "email_id":
+                        email_id=req.body[i];
+                        break;
+                    case "f_name":
+                        f_name=req.body[i];
+                        break;
+                    case "l_name":
+                        l_name=req.body[i];
+                        break;
+                    case "state":
+                        state=req.body[i];
+                        break;
+            }
+            console.log("key:"+i);
+            console.log("value:"+req.body[i]);
+        }
+
+        if(user_id==""){
+            console.log("user id not available to update user record");
+            res.send("User id is necessary");
+            res.end();
+            return;
+        }
+///////////////////////////////////////////////////////////////////
+        sql_conn.doesExist("user_profiles","user_id",user_id).then((cnt) =>{
+                if( cnt > 0 ){
+                    var connection = sql_conn.get_con();
+                        connection.connect(function(err) {
+                                if (err){
+                                    console.log("error:"+err)    
+                                    throw err;
+                                } 
+                                var updationQuery="update  user_profiles set phone= '"+phone+"',email_id='"+email_id+"',f_name='"+f_name+"',l_name='"+l_name+"',state='"+state+"'";
+                                connection.query(updationQuery, function (err, rows) {
+                                    if (err) throw err;
+                                            console.log(rows.affectedRows + " record(s) updated");
+                                });                                    
+                                    
+                                    res.send('updated user'+user_id);
+                                    res.end();
+                                    connection.end();
+                        });            
+                }else{
+                    console.log("user_id not in record for updation");
+                res.send("Not valid user");
+                res.end();
+                }
+    }).catch(err=>{
+        console.log("error:"+err)
+        res.send("Error")
+        res.end()
+    })
+//////////////////////////////////////
+    } //update user ends
 };
